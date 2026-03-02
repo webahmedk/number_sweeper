@@ -1,43 +1,54 @@
 # Number Sweeper
 
-## Overview
+## Project Overview
 
-Number Sweeper is a browser-based logic game built using HTML, CSS, and vanilla JavaScript.
-The player interacts with a 10 × 10 grid containing the numbers 1–100 in random order.
-The objective is to avoid prime numbers while strategically clearing the board.
+Number Sweeper is a browser-based puzzle game developed using **HTML, CSS, and JavaScript**.
+The objective of this project is to practice core front-end development concepts such as:
 
-The game tracks player attempts and stores results in a local leaderboard using the browser's LocalStorage API.
+* DOM manipulation
+* Event handling
+* Algorithm implementation
+* LocalStorage usage
+* Modular JavaScript structure
 
+The game generates a 10 × 10 grid containing numbers from **1 to 100** in random order. The player must avoid selecting prime numbers while strategically clearing the board.
 
-## Game Rules
+---
 
-1. The board contains numbers from **1 to 100** arranged randomly.
-2. Clicking a **prime number** immediately ends the game.
+# Learning Objectives
+
+This project was created to understand:
+
+• JavaScript game logic
+• Prime number algorithms
+• Dynamic HTML generation
+• Browser storage mechanisms
+• Basic software architecture in frontend projects
+
+---
+
+# Game Rules
+
+1. The grid contains numbers from **1 to 100** randomly arranged.
+2. Clicking a **prime number** results in **Game Over**.
 3. Clicking a **non-prime number**:
 
    * increases the score
    * disables all multiples of that number.
 4. Disabled cells cannot be clicked again.
-5. Clicking **1** successfully completes the game.
-6. When the player wins, the score is stored in the leaderboard.
+5. Clicking **1** completes the game and records the score.
 
+---
 
-## Technologies Used
+# System Architecture
 
-* HTML5
-* CSS3
-* JavaScript (ES6)
-* Browser LocalStorage
+The application is divided into small modules to improve readability and maintainability.
 
-
-## Project Structure
-
-
-number-sweeper
+```
+Application
 │
 ├── index.html
 ├── leaderboard.html
-├── README.md
 │
 ├── css
 │   └── style.css
@@ -53,44 +64,113 @@ number-sweeper
 └── assets
     └── audio
         └── gameOverSound.mp3
+```
 
+---
 
-## How to Run the Project
+# Module Responsibilities
+
+main.js
+Initialises the game and handles player input.
+
+game.js
+Creates the grid, manages gameplay rules, and updates the UI.
+
+ranking.js
+Processes player scores and stores leaderboard data.
+
+leaderboard.js
+Displays leaderboard results on a separate page.
+
+math.js
+Contains reusable functions such as prime number checking.
+
+---
+
+# Data Model
+
+Player Score
+
+```
+{
+  name: string,
+  attempts: number
+}
+```
+
+Grouped Ranking
+
+```
+{
+  attempts: number,
+  players: string[]
+}
+```
+
+Example
+
+```
+[
+  { attempts: 1, players: ["Alice", "John"] },
+  { attempts: 4, players: ["Sara"] }
+]
+```
+
+---
+
+# Algorithms Used
+
+Prime Number Check
+The algorithm checks divisibility up to √n to determine whether a number is prime.
+
+Time Complexity: **O(√n)**
+
+Array Shuffle
+A shuffle algorithm is used to randomize numbers in the grid.
+
+Ranking Algorithm
+Scores are sorted and grouped by the number of attempts.
+
+---
+
+# Storage
+
+Player scores are stored in **LocalStorage** so that results remain available even after refreshing the page.
+
+Storage Key
+
+```
+leaderBoard
+```
+
+---
+
+# How to Run the Project
 
 1. Download or clone the repository.
 2. Open the project folder.
-3. Open **index.html** in a web browser.
+3. Run the file:
 
-No build tools or installations are required.
+```
+index.html
+```
 
+No additional installation or server setup is required.
 
+---
 
-## Game Flow
+# Possible Improvements
 
-1. Player enters their name.
-2. A shuffled 10 × 10 grid is generated.
-3. The player selects numbers following the rules.
-4. If a prime number is clicked → Game Over.
-5. If the player reaches the win condition → score is saved to the leaderboard.
+• Timer-based scoring system
+• Improved UI styling
+• Animation effects
+• Backend database for leaderboard
+• Mobile responsive layout
 
+---
 
-
-## Example Leaderboard Data
-
-[
-  { "name": "John", "attempts": 4 },
-  { "name": "Alice", "attempts": 6 }
-]
-
-
-## Possible Improvements
-
-* Add visual feedback for disabled cells
-* Display ranking positions
-* Improve mobile responsiveness
-* Add restart button
-* Add difficulty levels
-
-## Author
+# Author
 
 Khalid Ahmed Khan
+
+
